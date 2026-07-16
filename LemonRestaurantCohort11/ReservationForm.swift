@@ -105,7 +105,7 @@ struct ReservationForm: View {
             }
             Section(header:Text("Optional")){
                             TextField("Occasion (Birthday, Anniversary, etc.)",text: $notes)
-                TextField("Please list any allergies.",text: $notes)
+
                             Stepper("Children: \(children)", value: $children, in: 0...10)
                             
                             //display that we have a kids menu available
