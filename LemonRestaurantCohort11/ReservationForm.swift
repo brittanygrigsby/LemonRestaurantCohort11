@@ -91,7 +91,7 @@ struct ReservationForm: View {
                 
 
                 if guestCount >= 8 {
-                    Text("Large group — we’ll do our best to accommodate you.")
+                    Text("For Large groups, we’ll do our best to accommodate you.")
                         .font(.footnote)
                         .foregroundStyle(.orange)
                 }
@@ -102,23 +102,44 @@ struct ReservationForm: View {
                 TextField("Phone",text:$phoneNumber)
                     .keyboardType(.numberPad)
                 
+                // the phone number is required
+                if phoneNumber.isEmpty {
+                    Text("Phone number is required")
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }else if phoneNumber.count < 10 {
+                    Text("Phone Number too short, please include area code")
+                        .font(.footnote)
+                        .foregroundStyle(.orange)
+                }else{
+                    Text("Looks good")
+                        .font(.footnote)
+                        .foregroundStyle(.green)
+                }
             }
             Section(header:Text("Optional")){
                             TextField("Occasion (Birthday, Anniversary, etc.)",text: $notes)
 
                             Stepper("Children: \(children)", value: $children, in: 0...10)
                             
-                            //display that we have a kids menu available
                             if children > 0 {
-                                Text("Kids menu available")
+                                Text("Kids Menu available")
                                     .font(.footnote)
-                                    .foregroundStyle(.yellow)
+                                    .foregroundStyle(.blue)
                             }
+                Toggle ("Show special text", isOn: $showMessage)
+                if showMessage{
+                    Text("Discount %")
+                        .foregroundStyle(.green)
+                }
 
                         }
             
             //actions
             Section(header: Text("Actions")){
+                Text(reservationStatus)
+                    .font(.footnote)
+                    .foregroundStyle(.orange)
                 Button("Preview Reservation Details"){
                     previewText =
                     """
