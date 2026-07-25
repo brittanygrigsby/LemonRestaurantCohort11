@@ -8,11 +8,53 @@
 import SwiftUI
 
 struct RestaurantInfoView: View {
+    let socialMedia =  [
+        "Instagram": "@lemonrestaurant",
+        "Facebook": "facebook.com/lemonrestaurant",
+        "Tiktok": "@restaurant.lemon"
+    ]
+    let services =  [
+        "Self Parking": "Free",
+        "Valet Parking": "$25 flat rate",
+        "WiFi": "Yes",
+        "Catering": "Available",
+        "Reservations": "Available",
+        "Delivery": "No"
+    ]
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            List {
+                Section(header:Text("Social Media")){
+                    ForEach(Array(socialMedia), id:\.key){(key,value) in
+                        HStack{
+                            Text(key)
+                                .bold()
+                            Spacer()
+                            Text(value)
+                                .foregroundStyle(.gray)
+                            
+                        }
+                    }
+                }
+                Section(header:Text("Services")){
+                    ForEach(Array(services), id:\.key){(key,value) in
+                        HStack{
+                            Text(key)
+                                .bold()
+                            Spacer()
+                            Text(value)
+                                .foregroundStyle(.gray)
+                            
+                        }
+                    }
+                }
+                .navigationTitle("Restaurant Information")
+            }
+        }
     }
 }
-
 #Preview {
     RestaurantInfoView()
 }

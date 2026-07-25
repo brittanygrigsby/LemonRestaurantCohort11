@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct DataListView: View {
+    var students = ["Christian", "Brittany", "Stephen", "Leo"]
+    var favFoods = ["Lasgna", "Artichoke and Spinach Dip", "Asada Fries", "Fried chicken", "Tacos"]
+    //new array
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List{
+            Section(header: Text("Students")){
+                ForEach(students, id:\.self) { student in
+                    Text(student)
+                }
+            }
+            Section(header: Text("Favorite Foods")){
+                //assignment here (For Each)
+                ForEach(favFoods, id:\.self) { food in
+                    Text(food)
+                        .foregroundColor(Color.green)
+                }
+            }
+        }
     }
 }
 
