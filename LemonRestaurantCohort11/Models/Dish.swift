@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Dish{
+    var name: String
+    var category: String
+    var price: Double
+    var description: String
+    var imageName: String
+}
